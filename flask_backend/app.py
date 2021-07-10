@@ -1,4 +1,4 @@
-from db import db
+
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -24,9 +24,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # turns off flask sqlalchem
 app.secret_key = 'tony'
 api = Api(app) 
 
-@app.before_first_request # before the first request runs, the below function is ran, which will automatically create tables
-def create_tables(): 
-    db.create_all()
+
 
 
 jwt = JWT(app, authenticate, identity) # JWT creates a new endpoint, /auth, and routes the payload to the authenticate and identity checks in security.py
@@ -38,6 +36,7 @@ api.add_resource(StoreList, '/stores')
 api.add_resource(UserRegister, '/register') # when we execute a post request to /register, the post request function in UserRegister class will be called
 
 if __name__ == '__main__': # the file that gets executed is always named __main__
+    from db import db
     db.init_app(app)
     app.run(port=5000, debug=True)
 
