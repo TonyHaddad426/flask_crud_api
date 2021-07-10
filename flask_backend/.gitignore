@@ -4,4 +4,3 @@ resources/__pycache__/
 *.pyc
 .DS_Store
 flask_backend/__pycache__/
-
