@@ -19,7 +19,7 @@ from resources.store import Store, StoreList
 #jsonify is a method to convert dicts into JSON
 
 app = Flask(__name__) # create Flask object 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db') # asks the OS for the defined environment variable
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI', 'sqlite:///data.db') # asks the OS for the defined environment variable
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # turns off flask sqlalchemy modification tracker 
 app.secret_key = 'tony'
 api = Api(app) 
