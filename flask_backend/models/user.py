@@ -8,7 +8,7 @@ class UserModel(db.Model):
     password = db.Column(db.String(80))
 
     def __init__(self, username, password): # this will act as a store of user data
-        self.username = username
+        self.username = username.lower()
         self.password = password
 
     def save_to_db(self): 
@@ -17,7 +17,7 @@ class UserModel(db.Model):
 
     @classmethod # enables you to invoke a class within a function using a generic expression, cls, as opposed to the physical class name
     def find_by_username(cls, username): 
-        return cls.query.filter_by(username=username).first() 
+        return cls.query.filter_by(username=username.lower()).first() 
 
     @classmethod # enables you to invoke a class within a function using a generic expression, cls, as opposed to the physical class name
     def find_by_id(cls, _id): 

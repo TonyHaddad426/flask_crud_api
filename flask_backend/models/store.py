@@ -8,18 +8,20 @@ class StoreModel(db.Model):
 
     items = db.relationship('ItemModel') 
 
-    def __init__(self, name):
+    def __init__(self, name, id):
         self.name = name
+        self.id = id
     
 
     def json(self):
-        return {'name' : self.name, 'items' : [item.json() for item in self.items]} 
+        return {'store_name' : self.name, 'store_id' : self.id, 'items' : [item.json(item.store.name) for item in self.items]} 
 
     @classmethod 
     def find_by_name(cls, name): 
         # SELECT * FROM items WHERE name=name LIMIT 1
         # the query method is native to SQLAlchemy and enables you to build database functions
         return cls.query.filter_by(name=name).first() # returns a class object 
+    
 
 
     def save_to_db(self): 
