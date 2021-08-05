@@ -1,8 +1,8 @@
 import os 
-from flask import Flask
+from flask import Flask, render_template, send_from_directory
 from flask_restful import Api
 from flask_jwt import JWT
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 from security import authenticate, identity
 
@@ -27,15 +27,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI', 'sqlite:/
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # turns off flask sqlalchemy modification tracker 
 api = Api(app) 
 
-# load React app as soon as the Flask app starts
-@app.route('/', methods["GET"])
-def index(): 
-    return app.send_static_file('index.html')
-
-# load React app as soon as the Flask app starts
-@app.errorhandler(404)
-def not_found(e): 
-    return app.send_static_file('index.html')
 
 jwt = JWT(app, authenticate, identity) # JWT creates a new endpoint, /auth, and routes the payload to the authenticate and identity checks in security.py
 
@@ -46,9 +37,20 @@ api.add_resource(ItemList, '/items')
 api.add_resource(StoreList, '/stores')
 api.add_resource(UserRegister, '/register') # when we execute a post request to /register, the post request function in UserRegister class will be called
 
+# this root endpoint is going to point to the built version of the ReactJS code
+@app.route('/')
+def serve(): 
+    return send_from_directory(app.static_folder,'index.html')
+
+# load React app as soon as the Flask app starts
+@app.errorhandler(404)
+def not_found(e): 
+    return send_from_directory(app.static_folder,'index.html')
+
 if __name__ == '__main__': # the file that gets executed is always named __main__
     from db import db
     db.init_app(app)
-    app.run(port=5000, debug=True)
+    # app.run(port=5000, debug=True)
+    app.run(host='0.0.0.0')
 
 
