@@ -1,7 +1,0 @@
-Flask
-Flask-RESTful
-Flask-JWT
-Flask-SQLAlchemy
-Flask-Cors
-uwsgi
-psycopg2
