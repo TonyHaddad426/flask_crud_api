@@ -1,8 +1,8 @@
 import os 
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, send_from_directory
 from flask_restful import Api
 from flask_jwt import JWT
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
 from security import authenticate, identity
 
@@ -42,7 +42,7 @@ api.add_resource(UserRegister, '/register') # when we execute a post request to 
 def serve(): 
     return send_from_directory(app.static_folder,'index.html')
 
-# load React app as soon as the Flask app starts
+
 @app.errorhandler(404)
 def not_found(e): 
     return send_from_directory(app.static_folder,'index.html')
@@ -50,7 +50,7 @@ def not_found(e):
 if __name__ == '__main__': # the file that gets executed is always named __main__
     from db import db
     db.init_app(app)
-    # app.run(port=5000, debug=True)
-    app.run(host='0.0.0.0')
+    app.run(port=5000, debug=True)
+    # app.run(host='0.0.0.0')
 
 
