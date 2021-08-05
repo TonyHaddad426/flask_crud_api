@@ -7,7 +7,7 @@ import MainHeader from "./components/MainHeader";
 import AuthForm from "./components/Authentication/AuthForm";
 import Spinner from "./components/Spinner";
 import AuthContext from "./components/Store/Auth-Context";
-import classes from "./App.module.css";
+
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -116,10 +116,10 @@ function App() {
         })
         .catch((err) => setError(err.message));
 
-        setTimeout(() => {
-          setIsLoading(false)
-        }, 2000);
- 
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+
       console.log("Displaying items state", items);
       return;
     }
@@ -140,10 +140,10 @@ function App() {
           setItems(data.items);
         })
         .catch((err) => setError(err.message));
-        setTimeout(() => {
-          setIsLoading(false)
-        }, 2000);
-        // setIsLoading(false)
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+      // setIsLoading(false)
       console.log("Displaying items state", items);
       return;
     }
@@ -164,10 +164,10 @@ function App() {
           setItems(data);
         })
         .catch((err) => setError(err.message));
-        setTimeout(() => {
-          setIsLoading(false)
-        }, 2000);
-        // setIsLoading(false)
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+      // setIsLoading(false)
       console.log("Displaying items state", items);
       return;
     }
@@ -222,9 +222,18 @@ function App() {
             ></ListAdminForms>
           </Route>
         )}
-        <Route path="*">
-          <Redirect to="/" />
-        </Route>
+
+        {authCtx.isLoggedIn && (
+          <Route path="*">
+            <Redirect to="/admin" />
+          </Route>
+        )}
+
+        {!authCtx.isLoggedIn && (
+          <Route path="*">
+            <Redirect to="/" />
+          </Route>
+        )}
       </main>
     </div>
   );

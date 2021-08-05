@@ -1,6 +1,0 @@
-__pycache__/
-models/__pycache__/
-resources/__pycache__/
-*.pyc
-.DS_Store
-flask_backend/__pycache__/
