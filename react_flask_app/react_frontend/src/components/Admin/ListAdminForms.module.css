@@ -1,0 +1,42 @@
+.user {
+    background-color: salmon;
+    padding: 1rem;
+    margin: 2rem auto;
+    width: 50rem;
+    max-width: 95%;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  }
+  .title {
+    color: #222525;
+    text-align: center;
+  }
+  
+  .user button {
+    font: inherit;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    border: 1px solid #555057;
+    background-color: #555057;
+    color: white;
+    border-radius: 12px;
+    margin-right: 1rem;
+  }
+  
+  .user button:hover,
+  .user button:active {
+    background-color: #222525;
+    border-color: #222525;
+  }
+  
+  .user button.alternative {
+    color: #220131;
+    border-color: transparent;
+    background-color: transparent;
+  }
+  
+  .user button.alternative:hover,
+  .user button.alternative:active {
+    background-color: #c5f0f3;
+  }

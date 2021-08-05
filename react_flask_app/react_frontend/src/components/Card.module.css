@@ -1,0 +1,10 @@
+.card {
+  background: white;
+  box-shadow: 0 2px 8px (0, 0, 0, 0.26);
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
