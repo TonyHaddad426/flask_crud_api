@@ -1,0 +1,70 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>Store Product Search API Docs</h2>
+
+<table>
+  <tr>
+    <th>Request Description</th>
+    <th>API Endpoint</th>
+    <th>Request Method</th>
+    <th>Request Headers</th>
+    <th>Request Body</th>
+    <th>Response Body</th>
+  </tr>
+  <tr>
+    <td>Create a new user</td>
+    <td>https://store-item-restful-api.herokuapp.com/register</td>
+    <td>POST</td>
+    <td>Content-Type : Application/JSON</td>
+    <td>{ "username" : "name", "password" : "password" }</td>
+    <td>{ "message" : "User created succesfully" }</td>
+  </tr>
+  <tr>
+    <td>Authenticate existing user</td>
+    <td>https://store-item-restful-api.herokuapp.com/auth</td>
+    <td>POST</td>
+    <td>Content-Type : Application/JSON</td>
+    <td>{ "username" : "name", "password" : "password" }</td>
+    <td>{ "access_token" : "token" }</td>
+  </tr>
+  <tr>
+    <td>Create a new item in an existing store</td>
+    <td>https://store-item-restful-api.herokuapp.com/item/"string:item_name"</td>
+    <td>POST</td>
+    <td>Content-Type : Application/JSON, Authorization : JWT "token"</td>
+    <td>{ "item_price" : "price", "store_id" : "id", "store_name" : "name" }</td>
+    <td>{
+        "item_name": "name",
+        "item_price": "price",
+        "store_id": "id",
+        "store_name": "name"
+    }</td>
+  </tr>
+
+</table>
+<h2> Listing of remaining endpoints is in progress...</h2>
+</body>
+</html>

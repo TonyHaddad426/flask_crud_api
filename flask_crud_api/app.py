@@ -1,5 +1,5 @@
 import os 
-from flask import Flask
+from flask import Flask, request, send_from_directory
 from flask_restful import Api
 from flask_jwt import JWT
 from flask_cors import CORS
@@ -20,7 +20,7 @@ from resources.store import Store, StoreList, StoreItem
 
 #jsonify is a method to convert dicts into JSON
 
-app = Flask(__name__) # create Flask object 
+app = Flask(__name__, static_folder='/', static_url_path='',) # create Flask object 
 CORS(app, resources={r"/*": {"origins": "*"}}) # allow CORS for all domains on all routes
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI', 'sqlite:///data.db') # asks the OS for the defined environment variable
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # turns off flask sqlalchemy modification tracker 
@@ -35,6 +35,10 @@ api.add_resource(StoreItem, '/store/<string:name>/<string:item_name>')
 api.add_resource(ItemList, '/items')
 api.add_resource(StoreList, '/stores')
 api.add_resource(UserRegister, '/register') # when we execute a post request to /register, the post request function in UserRegister class will be called
+
+@app.route('/')
+def serve():
+    return send_from_directory(app.static_folder, 'frontpage.html')
 
 if __name__ == '__main__': # the file that gets executed is always named __main__
     from db import db
