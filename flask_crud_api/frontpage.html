@@ -51,7 +51,7 @@ tr:nth-child(even) {
     <td>{ "access_token" : "token" }</td>
   </tr>
   <tr>
-    <td>Create a new item in an existing store</td>
+    <td>Add a new item in an existing store</td>
     <td>https://store-item-restful-api.herokuapp.com/item/"string:item_name"</td>
     <td>POST</td>
     <td>Content-Type : Application/JSON, Authorization : JWT "token"</td>
@@ -61,6 +61,18 @@ tr:nth-child(even) {
         "item_price": "price",
         "store_id": "id",
         "store_name": "name"
+    }</td>
+  </tr>
+  <tr>
+    <td>Add a new store</td>
+    <td>https://store-item-restful-api.herokuapp.com/store/"string:store_name"</td>
+    <td>POST</td>
+    <td>Content-Type : Application/JSON, Authorization : JWT "token"</td>
+    <td>N/A</td>
+    <td>{
+        "store_name": "store_name",
+        "store_id": id,
+        "items": []
     }</td>
   </tr>
 
