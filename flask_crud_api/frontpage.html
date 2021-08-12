@@ -23,7 +23,7 @@ tr:nth-child(even) {
 </head>
 <body>
 
-<h2>Store Product Search API Docs</h2>
+<h2>Store Product Search API Docs - Below is a list of endpoints that facilitate data requests from a product serch web page: <a ref="https://store-search-react.herokuapp.com/">Produt Search</a></h2>
 
 <table>
   <tr>
@@ -58,8 +58,8 @@ tr:nth-child(even) {
     <td>{ "item_price" : "price", "store_id" : "id", "store_name" : "name" }</td>
     <td>{
         "item_name": "name",
-        "item_price": "price",
-        "store_id": "id",
+        "item_price": price,
+        "store_id": id,
         "store_name": "name"
     }</td>
   </tr>
@@ -75,8 +75,51 @@ tr:nth-child(even) {
         "items": []
     }</td>
   </tr>
+  <tr>
+    <td>Search for all items in a store</td>
+    <td>https://store-item-restful-api.herokuapp.com/store/"string:store_name"</td>
+    <td>GET</td>
+    <td>Content-Type : Application/JSON</td>
+    <td>N/A</td>
+    <td>{
+        "store_name": "store_name",
+        "store_id": id,
+        "items": []
+    }</td>
+  </tr>
+  <tr>
+    <td>Search for an item in a store</td>
+    <td>https://store-item-restful-api.herokuapp.com/store/"string:store_name"/"string:item_name"</td>
+    <td>GET</td>
+    <td>Content-Type : Application/JSON</td>
+    <td>N/A</td>
+    <td>[
+        {
+            "item_name": "item_name",
+            "item_price": price,
+            "store_id": id,
+            "store_name": "store_name"
+        } 
+        ]</td>
+  </tr>
+  <tr>
+    <td>Search for an item across all stores</td>
+    <td>https://store-item-restful-api.herokuapp.com/item/"string:item_name"</td>
+    <td>GET</td>
+    <td>Content-Type : Application/JSON</td>
+    <td>N/A</td>
+    <td>[
+        {
+            "item_name": "item_name",
+            "item_price": price,
+            "store_id": id,
+            "store_name": "store_name"
+        } 
+        ]</td>
+  </tr>
+
 
 </table>
-<h2> Listing of remaining endpoints is in progress...</h2>
+<h2> Other endpoints to delete or update items are can be found here: <a ref="https://github.com/TonyHaddad426/flask_crud_api/tree/master/flask_crud_api/resources">Flask API Source Code</a> </h2>
 </body>
 </html>
